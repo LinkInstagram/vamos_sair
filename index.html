@@ -79,6 +79,18 @@
         .btn-no:hover {
             background-color: #d32f2f;
         }
+        
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            display: none; /* Inicialmente escondido */
+            margin-top: 20px;
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
 
         .firework {
             position: absolute;
@@ -154,12 +166,14 @@
             <button class="btn btn-yes" id="yesBtn">SIM!</button>
             <button class="btn btn-no" id="noBtn">Não</button>
         </div>
+        <button class="btn btn-whatsapp" id="whatsappBtn">Enviar mensagem no WhatsApp</button>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const yesBtn = document.getElementById('yesBtn');
             const noBtn = document.getElementById('noBtn');
+            const whatsappBtn = document.getElementById('whatsappBtn');
             const container = document.querySelector('.container');
             
             // Faz o botão "Não" fugir do cursor
@@ -179,7 +193,7 @@
             // Animação de celebração quando clica no SIM
             yesBtn.addEventListener('click', function() {
                 // Altera o texto
-                document.querySelector('h1').textContent = 'Te busco 19 horas 🎉❤️';
+                document.querySelector('h1').textContent = 'Te busco as 19 horas 🎉❤️';
                 
                 // Esconde o botão Não
                 noBtn.style.display = 'none';
@@ -188,6 +202,9 @@
                 yesBtn.style.transform = 'scale(1.2)';
                 yesBtn.style.transition = 'transform 0.3s';
                 
+                // Mostra o botão do WhatsApp
+                whatsappBtn.style.display = 'inline-block';
+                
                 // Cria fogos de artifício
                 createFireworks();
                 createHearts();
@@ -195,6 +212,14 @@
                 
                 // Toca um som de comemoração (opcional)
                 playCelebrationSound();
+            });
+            
+            // Configura o botão do WhatsApp
+            whatsappBtn.addEventListener('click', function() {
+                const phoneNumber = '11995691181';
+                const message = 'Olá! Confirmando nosso encontro para quarta-feira às 19h! 😊';
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
             });
             
             function createFireworks() {
